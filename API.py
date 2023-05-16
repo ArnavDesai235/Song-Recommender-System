@@ -39,3 +39,10 @@ def get_track_name(token, track_id):
     url = json_result['album']['images'][0]['url']
     ans = [name,artist,url]
     return ans
+
+def get_music_preview(token, track_id):
+    url = f"https://api.spotify.com/v1/tracks/{track_id}"
+    headers = get_auth_header(token)
+    result = get(url, headers = headers)
+    json_result = json.loads(result.content)
+    return(json_result['preview_url'])
